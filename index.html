@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>AA Delish</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="img/ico.png" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gochi+Hand">
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+
+</head>
+<body>
+
+
+
+
+<div class="main-container">
+
+	<div class="main">
+
+		<img src="img/bg_banner.jpg" style="width: 250px;  border-radius: 20px; margin-bottom: 20px;" />
+	
+		<br/><br/>
+		<br/>
+
+		<h3>The easiest way to order</h3>
+		<p class="paragraph-text">No lines, No waiting</p>
+			<br/>
+		<p class="paragraph-text" style="font-size: 10px; ">
+			By proceeding you confirm that you have read our 
+			<br/>
+			<b><a class="a-link" href="#">Privacy policy</a></b>
+		</p>
+		  <a href="notification.html">
+			<button type="button" class="primary-btn-wide" id="btn">Let's start</button>
+		  </a>
+	</div>
+<script>document.getElementById('btn').addEventListener('click', function() {
+  this.style.animation = 'bounce 0.5s ease';
+  setTimeout(() => {
+    this.style.animation = '';
+  }, 500);
+});
+</script>
+</div>
+
+
+</body>
+</html>

